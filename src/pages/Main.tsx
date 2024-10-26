@@ -1,7 +1,9 @@
 
 const Main = () => {
     return (
-        <div>Main</div>
+        <div>
+            <button className="btn btn-primary" >buton</button>
+        </div>
     )
 }
 

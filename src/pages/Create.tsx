@@ -1,7 +1,14 @@
+import { Container } from "react-bootstrap"
+import CustomForm from "../components/Form"
 
 const Create = () => {
     return (
-        <div>Create</div>
+        <Container className="py-5">
+            <h2>Yeni Not oluştur</h2>
+
+            <CustomForm />
+
+        </Container>
     )
 }
 
