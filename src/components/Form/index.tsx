@@ -3,12 +3,14 @@ import { Button, Col, Form, Row, Stack } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import ReactSelect from "react-select/creatable"
 import { Tag } from "../../types.ts"
+import { v4 } from "uuid"
 
 const CustomForm = () => {
 
     const inputRef = useRef<HTMLInputElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+    console.log(selectedTags);
 
 
     //form gönderilince çalışır
@@ -49,7 +51,16 @@ const CustomForm = () => {
                 <Col>
                     <Form.Group>
                         <Form.Label>Etiketler</Form.Label>
-                        <ReactSelect />
+                        <ReactSelect onCreateOption={(text: string) => {
+                            //etiket nesnesi oluştur
+                            const newTag: Tag = { label: text, value: v4() }
+
+                            //todo locale kaydet
+
+                            //seçili etiketler state 'ine ekle
+                            setSelectedTags([...selectedTags, newTag])
+
+                        }} className="text-black" isMulti />
                     </Form.Group>
                 </Col>
 
