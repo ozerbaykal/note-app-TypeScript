@@ -1,39 +1,47 @@
 import { FormEvent, useRef, useState } from "react"
 import { Button, Col, Form, Row, Stack } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ReactSelect from "react-select/creatable"
 import { Tag } from "../../types.ts"
 import { v4 } from "uuid"
+import { CreateProps } from "../../pages/Create.tsx"
 
-const CustomForm = () => {
+const CustomForm = ({ handleSubmit, createTag, availableTags }: CreateProps) => {
 
     const inputRef = useRef<HTMLInputElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-    console.log(selectedTags);
+
+    const navigate = useNavigate();
+
 
 
     //form gönderilince çalışır
-    const handleSubmit = (e: FormEvent) => {
+    const handleForm = (e: FormEvent) => {
         e.preventDefault();
 
-        const title = inputRef.current?.value;
-        const markdown = textRef.current?.value;
-        console.log(title, markdown)
+
+        // inputlardaki verilere eriş
+        const title = inputRef.current?.value || "";
+        const markdown = textRef.current?.value as string;
+
+        //yeni oluşan note 'u state/locale'e kaydet
+        handleSubmit({
+            title,
+            markdown,
+            tags: selectedTags,
 
 
-
-
-
-
-
+        })
+        //anasayfaya yönlendir
+        navigate("/")
 
     }
 
     return (
 
         <Form
-            onSubmit={handleSubmit}
+            onSubmit={handleForm}
             className="my-5">
             {/* başlık etiket inputu */}
             <Row>
@@ -51,16 +59,23 @@ const CustomForm = () => {
                 <Col>
                     <Form.Group>
                         <Form.Label>Etiketler</Form.Label>
-                        <ReactSelect onCreateOption={(text: string) => {
-                            //etiket nesnesi oluştur
-                            const newTag: Tag = { label: text, value: v4() }
+                        <ReactSelect
+                            options={availableTags}
+                            onChange={(allTags) => setSelectedTags(allTags as Tag[])}
 
-                            //todo locale kaydet
 
-                            //seçili etiketler state 'ine ekle
-                            setSelectedTags([...selectedTags, newTag])
+                            onCreateOption={(text: string) => {
+                                //etiket nesnesi oluştur
+                                const newTag: Tag = { label: text, value: v4() }
 
-                        }} className="text-black" isMulti />
+
+                                //todo locale kaydet
+                                createTag(newTag)
+
+                                //seçili etiketler state 'ine ekle
+                                setSelectedTags([...selectedTags, newTag])
+
+                            }} value={selectedTags} className="text-black" isMulti />
                     </Form.Group>
                 </Col>
 
