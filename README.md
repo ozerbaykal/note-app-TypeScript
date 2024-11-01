@@ -1,50 +1,84 @@
-# React + TypeScript + Vite
+# Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a CRUD application developed to utilize various TypeScript features. It allows users to create, edit, view, and delete notes. The application is built using **React** and **Vite**.
 
-Currently, two official plugins are available:
+## Video gif
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![](./public/image/screenrecord.gif)
 
-## Expanding the ESLint configuration
+## Main Page
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![](./public/image/MainPage.png)
 
-- Configure the top-level `parserOptions` property like this:
+## Detail Page
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+![](./public/image/DetailPage.png)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Create Page
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![](./public/image/CreatePage.png)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Features
+
+- **Home Page**: Filter notes by title and tags.
+- **Detail Page**: View the details of notes.
+- **Edit Page**: Edit existing notes.
+- **Create Page**: Add new notes.
+- **Markdown Support**: Notes in the text area are rendered using the `react-markdown` library for improved readability.
+- **Responsive Design**: The application is fully responsive, providing a user-friendly interface.
+- **Bootstrap Integration**: A sleek design is achieved using `react-bootstrap` for styling.
+
+## Libraries Used
+
+- `@uidotdev/usehooks`: ^2.4.1
+- `bootstrap`: ^5.3.3
+- `react`: ^18.3.1
+- `react-bootstrap`: ^2.10.5
+- `react-dom`: ^18.3.1
+- `react-markdown`: ^9.0.1
+- `react-router-dom`: ^6.27.0
+- `react-select`: ^5.8.1
+- `uuid`: ^9.0.0
+
+## Installation
+
+To run this project on your local machine, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ozerbaykal/note-app-TypeScript.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd note-app-TypeScript
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the application:
+   ```bash
+   npm run dev
+   ```
+
+<h2>Contributing</h2>
+
+Contributions are welcome! Please open an issue first to discuss what you would like to change.
+
+- 1.Fork the project
+- 2.Create your feature branch (git checkout -b feature/NewFeature)
+- 3.Commit your changes (git commit -m 'Add new feature')
+- 4.Push to the branch (git push origin feature/NewFeature)
+- 5.Open a Pull Request
+
+<h2>Contact</h2>
+
+Özer BAYKAL mail : baykalozer87@gmail.com
+
+Project Link: https://github.com/ozerbaykal/note-app-TypeScript
