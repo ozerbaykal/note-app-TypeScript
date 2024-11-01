@@ -6,6 +6,7 @@ import Edit from "./pages/Edit"
 import { Note, NoteData, Tag } from "./types"
 import { useLocalStorage } from "@uidotdev/usehooks"
 import { v4 } from "uuid"
+import Layout from "./components/Layout"
 
 
 
@@ -38,8 +39,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main notes={notes} availableTags={tags} />} />
         <Route path="/new" element={<Create createTag={createTag} handleSubmit={createNote} availableTags={tags} />} />
-        <Route path="/note/:id" element={<Detail />} />
-        <Route path="/note/:id/edit" element={<Edit />} />
+
+        <Route path="/note/:id" element={<Layout notes={notes} />}>
+
+          <Route index element={<Detail />} />
+          <Route path="edit" element={<Edit />} />
+
+
+        </Route>
+
 
 
 
