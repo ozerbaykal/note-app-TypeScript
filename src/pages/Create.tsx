@@ -7,7 +7,9 @@ export type CreateProps = {
     handleSubmit: (noteData: NoteData) => void;
     createTag: (tag: Tag) => void;
     availableTags: Tag[];
-}
+
+
+} & Partial<NoteData>;
 
 const Create = ({ handleSubmit, createTag, availableTags }: CreateProps) => {
     return (

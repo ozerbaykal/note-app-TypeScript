@@ -6,11 +6,11 @@ import { Tag } from "../../types.ts"
 import { v4 } from "uuid"
 import { CreateProps } from "../../pages/Create.tsx"
 
-const CustomForm = ({ handleSubmit, createTag, availableTags }: CreateProps) => {
+const CustomForm = ({ handleSubmit, createTag, availableTags, title = "", markdown = "", tags = [] }: CreateProps) => {
 
     const inputRef = useRef<HTMLInputElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
-    const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+    const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
 
     const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ const CustomForm = ({ handleSubmit, createTag, availableTags }: CreateProps) => 
                 <Col>
                     <Form.Group>
                         <Form.Label>Başlık</Form.Label>
-                        <Form.Control ref={inputRef} />
+                        <Form.Control defaultValue={title} ref={inputRef} />
                     </Form.Group>
 
 
@@ -84,7 +84,10 @@ const CustomForm = ({ handleSubmit, createTag, availableTags }: CreateProps) => 
             {/* içerik  */}
             <Form.Group className="mt-4">
                 <Form.Label>içerik (markdown destekler)</Form.Label>
-                <Form.Control ref={textRef} as="textarea" style={{ minHeight: "300px", maxHeight: "500px" }} />
+                <Form.Control
+                    defaultValue={markdown}
+
+                    ref={textRef} as="textarea" style={{ minHeight: "300px", maxHeight: "500px" }} />
 
 
             </Form.Group>
